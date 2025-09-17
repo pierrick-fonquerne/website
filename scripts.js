@@ -226,6 +226,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
   // keyboard accessibility for lang buttons
   document.querySelectorAll('.lang-btn').forEach(btn=>btn.addEventListener('keydown', (e)=>{if(e.key==='Enter' || e.key===' ') {e.preventDefault(); btn.click();}}));
+  // ensure sidenav links are focusable and activate on Enter
+  document.querySelectorAll('.sidenav-link').forEach(a=>{
+    a.setAttribute('tabindex','0');
+    a.addEventListener('keydown', (e)=>{ if(e.key==='Enter') { e.preventDefault(); a.click(); }});
+  });
+  // make skip link visible on focus
+  const skip = document.querySelector('.skip-link');
+  if(skip){ skip.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); document.querySelector('#hero').focus(); }}); }
 
 });
 
