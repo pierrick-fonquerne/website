@@ -13,9 +13,10 @@
     <a href="#projects" class="sidenav-link" data-i18n="nav.projects">Projets</a>
     <a href="#contact" class="sidenav-link" data-i18n="nav.contact">Contact</a>
 
-    <div class="lang-toggle" role="group" aria-label="Lang switch">
+    <div class="lang-toggle" role="group" aria-label="Lang & theme">
       <button class="lang-btn" data-lang="fr">FR</button>
       <button class="lang-btn" data-lang="en">EN</button>
+      <button class="theme-btn" aria-label="Toggle theme">🌗</button>
     </div>
   </aside>
 
@@ -34,7 +35,8 @@
           <div class="hero-cta reveal">
             <a class="btn btn--primary" href="https://github.com/pierrick-fonquerne" target="_blank" rel="noopener noreferrer" data-i18n="cta.github"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55 0-.27-.01-1-.02-1.96-3.2.7-3.88-1.42-3.88-1.42-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.74 2.68 1.24 3.33.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.47.11-3.06 0 0 .96-.31 3.14 1.18a10.9 10.9 0 0 1 2.86-.38c.97 0 1.95.13 2.86.38 2.18-1.5 3.14-1.18 3.14-1.18.62 1.59.23 2.77.11 3.06.73.81 1.18 1.84 1.18 3.1 0 4.42-2.7 5.39-5.27 5.67.41.36.77 1.07.77 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.2.66.79.55A11.52 11.52 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"></path></svg> GitHub</a>
             <a class="btn" href="https://www.linkedin.com/in/pierrickfonquerne" target="_blank" rel="noopener noreferrer" data-i18n="cta.linkedin"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.4c0-1.29-.02-2.96-1.8-2.96-1.8 0-2.07 1.4-2.07 2.85v5.51H9.52V9h3.42v1.56h.05c.48-.9 1.66-1.85 3.42-1.85 3.66 0 4.34 2.41 4.34 5.54v6.75zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"></path></svg> LinkedIn</a>
-            <a class="btn" href="/resume.pdf" download data-i18n="cta.cv">Télécharger CV</a>
+            <a class="btn" id="download-cv" href="#" data-i18n="cta.cv">Télécharger CV</a>
+            <a class="btn" href="/resume" target="_blank" rel="noopener noreferrer">Version imprimable</a>
           </div>
         </div>
       </div>
@@ -135,6 +137,8 @@
 
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="/scripts.js"></script>
 </body>
 </html>
