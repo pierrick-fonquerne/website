@@ -7,25 +7,26 @@
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <nav class="topnav">
-    <a href="#hero">Accueil</a>
-    <a href="#experience">Expérience</a>
-    <a href="#projects">Projets</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <aside class="sidenav" aria-label="Navigation principale">
+    <a href="#hero" class="sidenav-link">Accueil</a>
+    <a href="#experience" class="sidenav-link">Expérience</a>
+    <a href="#projects" class="sidenav-link">Projets</a>
+    <a href="#contact" class="sidenav-link">Contact</a>
+  </aside>
 
-  <div class="fullpage">
+  <div class="fullpage content-offset">
 
     <section id="hero" class="section hero">
+      <canvas id="particle-canvas" class="particle-canvas" aria-hidden="true"></canvas>
       <div class="animated-bg"></div>
       <div class="container hero-inner">
-        <div class="avatar-wrap parallax reveal">
+        <div class="avatar-wrap parallax reveal" data-speed="0.14">
           <img class="avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Portrait">
         </div>
-        <div>
+        <div class="hero-content">
           <h1 class="hero-title reveal">Pierrick Fonquerne</h1>
           <p class="hero-sub reveal">Développeur .NET full‑stack — depuis juillet 2012 • France</p>
-          <p class="bio reveal" style="max-width:680px">Développeur passionné par les architectures robustes et les interfaces fluides. J'aime relier le backend .NET avec des frontends modernes pour créer des expériences performantes et maintenables.</p>
+          <p class="hero-bio reveal">Développeur passionné par les architectures robustes et les interfaces fluides. J'aime relier le backend .NET avec des frontends modernes pour créer des expériences performantes et maintenables.</p>
           <div class="hero-cta reveal">
             <a class="btn btn--primary" href="https://github.com/fake-user" target="_blank" rel="noopener noreferrer">GitHub</a>
             <a class="btn" href="https://linkedin.com/in/fake-user" target="_blank" rel="noopener noreferrer">LinkedIn</a>
@@ -70,7 +71,7 @@
                 <span class="skill">TypeScript</span>
               </div>
 
-              <h3 class="section-title" style="margin-top:18px">Contact</h3>
+              <h3 class="section-title section-gap">Contact</h3>
               <p class="bio">Email: <a href="mailto:pierrick@example.com">pierrick@example.com</a></p>
               <p class="bio">Localisation: Lyon, France</p>
             </div>
