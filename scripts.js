@@ -104,12 +104,55 @@ function setLang(lang){
   document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
 }
 
+function setTheme(theme){
+  if(theme==='dark') document.documentElement.classList.add('dark'); else document.documentElement.classList.remove('dark');
+  localStorage.setItem('site_theme', theme);
+}
+
+// PDF generation using html2canvas + jsPDF
+async function generatePDF(){
+  const { jsPDF } = window.jspdf;
+  const resumeEl = document.createElement('div');
+  // build a minimal resume snapshot from DOM
+  resumeEl.style.padding = '20px';
+  resumeEl.style.maxWidth = '780px';
+  resumeEl.style.background = '#fff';
+  resumeEl.innerHTML = document.querySelector('header')? document.querySelector('header').outerHTML : '<h1>'+document.querySelector('[data-i18n="hero.name"]').textContent+'</h1>';
+  // append key sections
+  ['experience','projects','contact'].forEach(id=>{
+    const sec = document.getElementById(id);
+    if(sec){
+      const copy = sec.cloneNode(true);
+      copy.style.marginTop='12px';
+      // remove interactive elements
+      copy.querySelectorAll('a,button,input,textarea').forEach(n=>n.removeAttribute('href'));
+      resumeEl.appendChild(copy);
+    }
+  });
+  document.body.appendChild(resumeEl);
+  const canvas = await html2canvas(resumeEl, {scale:1.6, useCORS:true, backgroundColor:'#ffffff'});
+  const imgData = canvas.toDataURL('image/jpeg',0.95);
+  const pdf = new jsPDF({unit:'px',format:'a4'});
+  const imgProps = pdf.getImageProperties(imgData);
+  const pdfWidth = pdf.internal.pageSize.getWidth();
+  const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+  pdf.addImage(imgData, 'JPEG', 20, 20, pdfWidth-40, pdfHeight);
+  pdf.save('Pierrick_Fonquerne_CV.pdf');
+  document.body.removeChild(resumeEl);
+}
+
 // Main behavior
 document.addEventListener('DOMContentLoaded', ()=>{
   // i18n init
   const preferred = localStorage.getItem('site_lang') || (navigator.language && navigator.language.startsWith('en')? 'en' : 'fr');
   setLang(preferred);
   document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click', ()=>setLang(b.dataset.lang)));
+
+  // theme init
+  const savedTheme = localStorage.getItem('site_theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches? 'dark' : 'light');
+  setTheme(savedTheme);
+  const themeBtn = document.querySelector('.theme-btn');
+  if(themeBtn) themeBtn.addEventListener('click', ()=>{ const now = document.documentElement.classList.contains('dark')? 'light' : 'dark'; setTheme(now); });
 
   // Reveal observer
   const io = new IntersectionObserver((entries)=>{
@@ -146,6 +189,23 @@ document.addEventListener('DOMContentLoaded', ()=>{
   window.addEventListener('scroll', ()=>{ if(!ticking){ticking=true;requestAnimationFrame(updateParallax)} }, {passive:true});
   updateParallax();
 
+  // Advanced lazy-loading for images (art-direction)
+  const lazyImgs = document.querySelectorAll('img[loading="lazy"]');
+  const imgObserver = new IntersectionObserver((entries, obs)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        const img = entry.target;
+        // if data-srcset present, assign
+        const srcset = img.getAttribute('data-srcset');
+        if(srcset) img.setAttribute('srcset', srcset);
+        const src = img.getAttribute('data-src');
+        if(src) img.setAttribute('src', src);
+        obs.unobserve(img);
+      }
+    });
+  },{rootMargin:'200px 0px 200px 0px',threshold:0.01});
+  lazyImgs.forEach(i=>imgObserver.observe(i));
+
   // Smooth scrolling for anchor clicks
   document.querySelectorAll('a[href^="#"]').forEach(a=>{
     a.addEventListener('click', (e)=>{
@@ -159,6 +219,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
       }
     });
   });
+
+  // Download CV button
+  const dl = document.getElementById('download-cv');
+  if(dl) dl.addEventListener('click', (e)=>{e.preventDefault(); generatePDF();});
 
   // keyboard accessibility for lang buttons
   document.querySelectorAll('.lang-btn').forEach(btn=>btn.addEventListener('keydown', (e)=>{if(e.key==='Enter' || e.key===' ') {e.preventDefault(); btn.click();}}));
