@@ -5,7 +5,10 @@ const port = process.env.PORT || 3000;
 
 const server = http.createServer((req, res) => {
   const urlPath = decodeURIComponent(req.url.split('?')[0]);
-  let filePath = path.join(__dirname, urlPath === '/' ? 'index.html' : urlPath);
+  // Map friendly routes
+  let requested = urlPath === '/' ? '/index.html' : urlPath;
+  if(requested === '/resume') requested = '/resume.html';
+  let filePath = path.join(__dirname, requested);
   // Prevent directory traversal
   if (!filePath.startsWith(__dirname)) {
     res.writeHead(400, {'Content-Type': 'text/plain'});
