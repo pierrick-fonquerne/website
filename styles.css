@@ -80,3 +80,24 @@ textarea{min-height:130px}
   .sidenav{display:none}
   .content-offset{padding-left:18px}
 }
+
+/* Dark theme */
+:root.dark{
+  --bg: #071028;
+  --card: #071028;
+  --primary-900: #9fc5ff;
+  --primary-700: #7fb8ff;
+  --primary-500: #4b98ff;
+  --primary-300: #2b6eff;
+  --muted: #94a3b8;
+  --accent: rgba(75,152,255,0.06);
+  color-scheme: dark;
+}
+
+/* Print */
+@media print{
+  :root{color-scheme:light}
+  .sidenav, .lang-toggle, .hero-cta, .content-offset{display:none}
+  .section{padding:0}
+  body{background:#fff}
+}
