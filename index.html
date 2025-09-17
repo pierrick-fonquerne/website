@@ -1,21 +1,114 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Personal Website</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 40px; background:#f7f7f7; color:#222 }
-    .site-container { max-width:900px; margin:0 auto; background:#fff; padding:30px; border-radius:8px }
-    .title { font-size:28px; margin:0 0 10px }
-    .subtitle { color:#555 }
-  </style>
+  <title>Pierrick Fonquerne — Développeur .NET full‑stack</title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <div class="site-container">
-    <h1 class="title">Site personnel</h1>
-    <p class="subtitle">Code source de mon site personnel.</p>
-    <p>Server is working. Use <code>npm start</code> to run the app.</p>
+  <div class="site-wrapper">
+    <header class="header">
+      <div class="avatar-wrap">
+        <img class="avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Portrait">
+      </div>
+      <div class="title-group">
+        <h1 class="name">Pierrick Fonquerne</h1>
+        <p class="role">Développeur .NET full‑stack — depuis juillet 2012 • France</p>
+        <p class="bio">Développeur passionné par les architectures robustes et les interfaces fluides. J'aime relier le backend .NET avec des frontends modernes pour créer des expériences performantes et maintenables.</p>
+      </div>
+      <div class="header-actions">
+        <a class="btn btn--primary" href="https://github.com/fake-user" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a class="btn" href="https://linkedin.com/in/fake-user" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </header>
+
+    <div class="row">
+      <aside class="column sidebar">
+        <div>
+          <h3 class="section-title">Compétences</h3>
+          <div class="skills">
+            <span class="skill">C#</span>
+            <span class="skill">.NET 6/7</span>
+            <span class="skill">ASP.NET Core</span>
+            <span class="skill">Entity Framework</span>
+            <span class="skill">SQL Server</span>
+            <span class="skill">Azure</span>
+            <span class="skill">React</span>
+            <span class="skill">TypeScript</span>
+          </div>
+        </div>
+
+        <div style="margin-top:18px">
+          <h3 class="section-title">Contact</h3>
+          <p class="bio">Email: <a href="mailto:pierrick@example.com">pierrick@example.com</a></p>
+          <p class="bio">Localisation: Lyon, France</p>
+          <a class="btn" href="/resume.pdf" download>Télécharger CV (PDF)</a>
+        </div>
+      </aside>
+
+      <main class="column">
+        <section>
+          <h3 class="section-title">Expérience</h3>
+          <div class="timeline">
+            <div class="job">
+              <div class="meta"><div>Lead Developer — Acme Corp</div><div>2018 — Présent</div></div>
+              <div class="project-desc">Conception d'API REST performantes en ASP.NET Core, migration vers Azure, mise en place de CI/CD et amélioration de la couverture de tests.</div>
+            </div>
+            <div class="job">
+              <div class="meta"><div>Senior .NET Engineer — Beta Solutions</div><div>2014 — 2018</div></div>
+              <div class="project-desc">Refonte d'une application monolithique vers une architecture modulaire, optimisation des requêtes SQL et coaching des équipes juniors.</div>
+            </div>
+            <div class="job">
+              <div class="meta"><div>Développeur .NET — Freelancer</div><div>2012 — 2014</div></div>
+              <div class="project-desc">Projets variés: solutions web, intégrations tierces et développements sur mesure pour PME.</div>
+            </div>
+          </div>
+        </section>
+
+        <section style="margin-top:18px">
+          <h3 class="section-title">Projets</h3>
+          <div class="projects">
+            <article class="project-card">
+              <div class="project-title">Collaborateur.Pro (SaaS)</div>
+              <div class="project-desc">Plateforme de gestion d'équipes — ASP.NET Core, React, Azure. Intégration SSO et reporting temps réel.</div>
+              <a class="btn" href="#" target="_blank">Voir le repo</a>
+            </article>
+
+            <article class="project-card">
+              <div class="project-title">Facturo (ERP léger)</div>
+              <div class="project-desc">Solution de facturation et gestion commerciale — C#, EF Core, SQL Server.</div>
+              <a class="btn" href="#" target="_blank">Voir le repo</a>
+            </article>
+
+            <article class="project-card">
+              <div class="project-title">Portfolio animé</div>
+              <div class="project-desc">Site portfolio personnel avec animations CSS et optimisations de performance.</div>
+              <a class="btn" href="#" target="_blank">Voir le site</a>
+            </article>
+
+            <article class="project-card">
+              <div class="project-title">API Payments</div>
+              <div class="project-desc">API sécurisée pour paiements et gestion d'abonnements — intégration Stripe, tests E2E.</div>
+              <a class="btn" href="#" target="_blank">Voir le repo</a>
+            </article>
+          </div>
+        </section>
+
+        <section style="margin-top:18px">
+          <h3 class="section-title">Contact</h3>
+          <form class="contact-form" action="mailto:pierrick@example.com" method="post" enctype="text/plain">
+            <input class="input" type="text" name="name" placeholder="Votre nom">
+            <input class="input" type="email" name="email" placeholder="Votre email">
+            <textarea name="message" placeholder="Message..."></textarea>
+            <button class="btn btn--primary" type="submit">Envoyer</button>
+          </form>
+        </section>
+
+      </main>
+    </div>
+
+    <footer class="footer">© 2025 Pierrick Fonquerne — Généré automatiquement (fake content). Modifie-moi pour mettre tes vraies infos.</footer>
   </div>
 </body>
 </html>
